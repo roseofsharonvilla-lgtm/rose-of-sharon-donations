@@ -418,7 +418,7 @@ td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;font-v
 <a class="btn ghost" id="roomItems">Request this room’s shopping list</a>
 <div class="field"><span>Your gift</span>
 <div class="row" id="adAmts" style="gap:8px"></div>
-<input id="adCustom" type="number" min="25" step="25" placeholder="Or enter any amount ($)" style="margin-top:6px">
+<input id="adCustom" type="number" min="1" step="1" placeholder="Or enter any amount ($)" style="margin-top:6px">
 </div>
 <label class="field"><span>Your name</span><input id="adName" type="text" placeholder="Name, family, church or business"></label>
 <div class="row"><label class="field"><span>Email</span><input id="adEmail" type="email"></label><label class="field"><span>Phone</span><input id="adPhone" type="tel"></label></div>
@@ -700,21 +700,22 @@ const money = P.rooms.reduce((sum, room) => sum + Number(room.amt), 0);
 const total = P.rooms.reduce((sum, room) => sum + roomGoal(room), 0);
 $("#roomsBig").innerHTML = `${full} <small>of ${P.rooms.length}</small>`; $("#roomsMeter").style.width = full / P.rooms.length * 100 + "%";
 $("#roomsMoney").innerHTML = `${fmt(money)} <small>of ${fmt(total)}</small>`; $("#roomsBar").style.width = (total ? Math.min(100, money / total * 100) : 0) + "%";
-$("#roomGrid").innerHTML = P.rooms.map(r => { const G = roomGoal(r), f = r.amt >= G, p = Math.min(100, r.amt / G * 100); return `<div class="room ${f ? "full" : ""}"><span class="knob"></span><span class="label">Room</span><span class="no">${esc(r.no)}</span>${f ? `<span class="bow">Adopted by ${esc(r.plaque || r.by)}</span><div class="bar"><i style="width:100%"></i></div>` : `<span class="pill ${r.amt ? "warn" : "low"}">${r.amt ? fmt(G - r.amt) + " to go" : "Open"}</span><div class="bar"><i style="width:${p}%"></i></div><span class="amt">${fmt(r.amt)} of ${fmt(G)}</span><div class="acts"><button class="btn sm gold" data-adopt="${esc(r.no)}" data-a="full">${r.amt ? "Finish · " + fmt(G - r.amt) : "Adopt · " + fmt(G)}</button><button class="btn sm ghost" data-adopt="${esc(r.no)}" data-a="250">Chip in</button></div>`}</div>` }).join("");
+$("#roomGrid").innerHTML = P.rooms.map(r => { const G = roomGoal(r), f = r.amt >= G, p = Math.min(100, r.amt / G * 100); return `<div class="room ${f ? "full" : ""}"><span class="knob"></span><span class="label">Room</span><span class="no">${esc(r.no)}</span>${f ? `<span class="bow">Adopted by ${esc(r.plaque || r.by)}</span><div class="bar"><i style="width:100%"></i></div>` : `<span class="pill ${r.amt ? "warn" : "low"}">${r.amt ? fmt(G - r.amt) + " to go" : "Open"}</span><div class="bar"><i style="width:${p}%"></i></div><span class="amt">${fmt(r.amt)} of ${fmt(G)}</span><div class="acts">${roomRemaining(r) ? `<button class="btn sm gold" data-adopt="${esc(r.no)}" data-a="full">${roomRemaining(r) < G ? "Finish · " + fmt(roomRemaining(r)) : "Adopt · " + fmt(G)}</button><button class="btn sm ghost" data-adopt="${esc(r.no)}" data-a="250">Chip in</button>` : `<span class="pill warn">Awaiting payment</span>`}</div>`}</div>` }).join("");
 $$("[data-adopt]").forEach(b => b.onclick = () => chooseRoom(b.dataset.adopt, b.dataset.a));
 renderAdopt();
 }
-const roomGoal = room => ([11, 12].includes(Number(room.no)) ? 2700 : 2100);
+const roomGoal = room => Number(room.goal) || ([11, 12].includes(Number(room.no)) ? 2700 : 2100);
+const roomRemaining = room => Math.max(0, roomGoal(room) - Number(room.pledged ?? room.amt));
 function roomBy(no) { return P.rooms.find(r => String(r.no) === String(no)) }
-function chooseRoom(no, a) { const r = roomBy(no); $("#adRoom").value = no; adAmt = a === "full" ? roomGoal(r) - r.amt : Math.min(250, roomGoal(r) - r.amt); $("#adCustom").value = ""; renderAdopt(); $("#adoptForm").scrollIntoView({ behavior: "smooth", block: "start" }) }
+function chooseRoom(no, a) { const r = roomBy(no); $("#adRoom").value = no; adAmt = a === "full" ? roomRemaining(r) : Math.min(250, roomRemaining(r)); $("#adCustom").value = ""; renderAdopt(); $("#adoptForm").scrollIntoView({ behavior: "smooth", block: "start" }) }
 function renderAdopt() {
 const sel = $("#adRoom"), cur = sel.value;
-sel.innerHTML = `<option value="0">Any room that needs it most</option>` + P.rooms.filter(r => r.amt < roomGoal(r)).map(r => `<option value="${esc(r.no)}">Room ${esc(r.no)} · ${fmt(roomGoal(r) - r.amt)} to go</option>`).join("");
+sel.innerHTML = `<option value="0">Any room that needs it most</option>` + P.rooms.filter(r => roomRemaining(r) > 0).map(r => `<option value="${esc(r.no)}">Room ${esc(r.no)} · ${fmt(roomRemaining(r))} to go</option>`).join("");
 if ([...sel.options].some(o => o.value === cur)) sel.value = cur;
-const room = sel.value !== "0" ? roomBy(sel.value) : null, G = room ? roomGoal(room) : 2100, left = room ? G - room.amt : G;
+const room = sel.value !== "0" ? roomBy(sel.value) : null, G = room ? roomGoal(room) : 2100, left = room ? roomRemaining(room) : G;
 const roomLabel = room ? "Room " + room.no : "a room that needs support";
 $("#roomItems").href = "mailto:roseofsharonvilla@gmail.com?subject=" + encodeURIComponent("Adopt a Room item list") + "&body=" + encodeURIComponent("Hello, I would like to purchase items for " + roomLabel + ". Please send me the list of items still needed. Thank you!");
-const opts = [[250, "$250"], [500, "$500"], [750, "$750"], [left, left === G ? "Whole room · " + fmt(G) : "Finish it · " + fmt(left)]].filter((o, i, a) => o[0] <= left && a.findIndex(x => x[0] === o[0]) === i);
+const opts = [[250, "$250"], [500, "$500"], [750, "$750"], [left, left === G ? (room ? "Whole room · " : "Give · ") + fmt(G) : "Finish it · " + fmt(left)]].filter((o, i, a) => o[0] <= left && a.findIndex(x => x[0] === o[0]) === i);
 if (!$("#adCustom").value && !opts.some(o => o[0] === adAmt)) adAmt = left;
 $("#adAmts").innerHTML = opts.map(o => `<button class="duty" style="padding:9px 14px;flex:0 0 auto" data-am="${o[0]}" aria-pressed="${!$("#adCustom").value && adAmt === o[0]}">${o[1]}</button>`).join("");
 $$("[data-am]").forEach(b => b.onclick = () => { adAmt = +b.dataset.am; $("#adCustom").value = ""; renderAdopt() });
