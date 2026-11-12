@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Give to Rose of Sharon Senior Villa</title>
+<meta name="description" content="Help fill 100 Christmas stockings, adopt an angel and bring joy to the residents of Rose of Sharon Senior Villa.">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+/* Layout: evergreen header with a three-way switch (Community · Staff · Admin); community is one scrolling giving page, staff is a big-button points + market register, admin is a tidy command center */
+:root{
+--bg:#f6f8f3; --surface:#ffffff; --ink:#15281d; --muted:#5b6c61; --line:#dde4da;
+--evergreen:#0f3d2a; --evergreen-2:#175a3e; --gold:#b98a2e; --gold-soft:#f4ead0; --berry:#a32d2a;
+--on-green:#f6f1e2; --chip:#edf2ea; --warn:#b4690e;
+--display:"Marcellus","Cormorant Garamond",Georgia,serif;
+--body:"DM Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--bg:#0c1611; --surface:#13221a; --ink:#ecf0e8; --muted:#9fb1a5; --line:#25392d;
+--evergreen:#0a2a1d; --evergreen-2:#1f6d4b; --gold:#d8ac52; --gold-soft:#372d17; --berry:#d8695c;
+--on-green:#f6f1e2; --chip:#1a2d22; --warn:#e0a24a; color-scheme:dark}}
+:root[data-theme="dark"]{
+--bg:#0c1611; --surface:#13221a; --ink:#ecf0e8; --muted:#9fb1a5; --line:#25392d;
+--evergreen:#0a2a1d; --evergreen-2:#1f6d4b; --gold:#d8ac52; --gold-soft:#372d17; --berry:#d8695c;
+--on-green:#f6f1e2; --chip:#1a2d22; --warn:#e0a24a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+header{background:radial-gradient(1100px 320px at 85% -30%,var(--evergreen-2),transparent 70%),var(--evergreen);color:var(--on-green);position:relative;overflow:hidden}
+header canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
+.topbar{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:16px 0}
+.brand{font-family:var(--display);font-size:18px;letter-spacing:.02em}
+.brand small{display:block;font-family:var(--body);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.mode{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:4px}
+.mode button{font:500 13px var(--body);color:#dfe3d6;background:transparent;border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.mode button[aria-pressed="true"]{background:#f4dc96;color:#1b1405}
+.hero{position:relative;padding-block:30px 30px;display:grid;gap:16px}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,54px);line-height:1.04;margin:0;text-wrap:balance;max-width:18ch}
+h1 em{font-style:normal;background:linear-gradient(100deg,#e9c873,#b98a2e 45%,#f4dc96 60%,#b98a2e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0;max-width:58ch;color:#d9dccd}
+.heroBar{display:grid;gap:10px;max-width:620px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px}
+.heroBar .nums{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.heroBar b{font-family:var(--display);font-weight:400;font-size:40px;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.heroBar b small{font-size:18px;color:#c9cfbf}
+.heroBar .bar{background:rgba(255,255,255,.14);height:14px}
+.jump{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.jump a{font:500 13px var(--body);text-decoration:none;color:#f6f1e2;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 14px}
+.jump a:hover{background:rgba(255,255,255,.1)}
+main{padding-block:30px 70px;display:grid;gap:44px}
+section{scroll-margin-top:16px}
+h2{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 4px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:400;font-size:20px;margin:0 0 12px}
+.sub{color:var(--muted);margin:0 0 20px;max-width:62ch}
+.grid{display:grid;gap:18px}
+.two{grid-template-columns:1.2fr .8fr}
+.half{grid-template-columns:1fr 1fr}
+@media(max-width:840px){.two,.half{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;min-width:0}
+.label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+.bar{height:10px;background:var(--chip);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--evergreen-2),var(--gold));border-radius:99px;transition:width .6s}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;min-width:0;width:100%}
+textarea{resize:vertical;min-height:80px}
+.field{display:grid;gap:5px;flex:1 1 200px}
+.field span{font-size:13px;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px var(--body);border:0;border-radius:999px;padding:12px 22px;cursor:pointer;background:var(--evergreen-2);color:#fff;text-decoration:none}
+.btn.gold{background:linear-gradient(180deg,#dcb661,#b98a2e);color:#1b1405}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:7px 14px;font-size:13px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.tag{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--gold-soft);color:var(--ink);padding:3px 8px;border-radius:6px;vertical-align:middle}
+.gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.gifts{grid-template-columns:repeat(2,1fr)}}
+.gift{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--surface);text-decoration:none;color:var(--ink);display:grid;gap:6px;align-content:start;transition:border-color .15s,transform .15s}
+a.gift:hover{transform:translateY(-2px);border-color:var(--gold)}
+.gift .amt{font-family:var(--display);font-size:34px;line-height:1;color:var(--evergreen-2)}
+.gift .what{font-weight:700}
+.gift .why{color:var(--muted);font-size:13px}
+.gift .go{margin-top:6px;font-weight:700;font-size:13px;color:var(--gold)}
+.gift.soon{border-style:dashed;opacity:.75}
+.ways{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:980px){.ways{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.ways{grid-template-columns:1fr}}
+.way{display:grid;gap:8px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;text-decoration:none;color:var(--ink)}
+.way:hover{border-color:var(--evergreen-2)}
+.way .ic{width:42px;height:42px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center}
+.ic svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.way b{font-size:15px}
+.way span{font-size:13px;color:var(--muted)}
+.stockHead{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center}
+@media(max-width:560px){.stockHead{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.big{font-family:var(--display);font-size:52px;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:18px;color:var(--muted)}
+.meter{height:18px;border-radius:99px;background:var(--chip);overflow:hidden;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(135deg,#b8332f 0 14px,#c9483f 14px 28px);border-radius:99px;transition:width .7s}
+.ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.items{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 26px}
+@media(max-width:620px){.items{grid-template-columns:1fr}}
+.item{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+.item .n{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.item .n b{color:var(--ink)}
+.item .bar{grid-column:1/-1}
+.item.done .n b{color:var(--evergreen-2)}
+.wishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.wish{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 16px 16px;display:grid;gap:8px;align-content:start}
+.wish:before{content:"";position:absolute;top:-7px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--bg)}
+.wish .who{font-family:var(--display);font-size:20px}
+.wish .w{font-size:14px}
+.wish.claimed{background:var(--chip)}
+.wish.claimed .btn{pointer-events:none}
+.formBox{display:grid;gap:12px}
+.confirm{border:1px dashed var(--gold);border-radius:14px;padding:14px;background:var(--gold-soft)}
+.contact{display:grid;gap:4px;font-size:14px}
+.contact b{font-size:16px}
+.view[hidden]{display:none!important}
+.rooms{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.room{background:var(--surface);border:1px solid var(--line);border-radius:80px 80px 14px 14px;padding:26px 14px 14px;display:grid;gap:8px;justify-items:center;text-align:center;position:relative}
+.room .no{font-family:var(--display);font-size:30px;line-height:1}
+.room .knob{position:absolute;right:18px;top:52%;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.room .bar{width:100%;height:8px}
+.room .amt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.room.full{background:linear-gradient(180deg,color-mix(in srgb,var(--evergreen-2) 16%,var(--surface)),var(--surface));border-color:var(--evergreen-2)}
+.room.full .bow{font-size:12px;font-weight:700;color:var(--evergreen-2)}
+.room .acts{display:grid;gap:6px;width:100%}
+.roomHead{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:700px){.roomHead{grid-template-columns:1fr}}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:6px}
+.kpi b{font-family:var(--display);font-weight:400;font-size:34px;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi .bar{height:6px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--chip)}
+.pill.ok{background:color-mix(in srgb,var(--evergreen-2) 18%,transparent);color:var(--evergreen-2)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.pill.low{background:color-mix(in srgb,var(--berry) 16%,transparent);color:var(--berry)}
+.mini{display:inline-block;width:110px;height:8px;background:var(--chip);border-radius:99px;overflow:hidden;vertical-align:middle;margin-right:8px}
+.mini i{display:block;height:100%;background:var(--evergreen-2)}
+.stepHead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.stepHead .num{width:28px;height:28px;border-radius:50%;background:var(--evergreen-2);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.stepHead h3{margin:0}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.person{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;display:grid;gap:4px;justify-items:center;text-align:center}
+.person[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset;background:var(--gold-soft)}
+.av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:18px;color:#fff;background:var(--evergreen-2)}
+.person .p{font-size:12px;color:var(--muted)}
+.person .p b{color:var(--gold);font-size:15px}
+.duties{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.duty{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left}
+.duty b{font-family:var(--display);font-size:20px;color:var(--evergreen-2);font-weight:400}
+.duty[aria-pressed="true"]{border-color:var(--evergreen-2);background:color-mix(in srgb,var(--evergreen-2) 12%,var(--surface))}
+.duty:disabled{opacity:.45;cursor:not-allowed}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tabs button{font:500 14px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--evergreen-2);color:#fff;border-color:var(--evergreen-2)}
+.wallet{background:linear-gradient(135deg,var(--evergreen),var(--evergreen-2));color:var(--on-green);border-radius:20px;padding:20px;display:grid;gap:8px;position:relative;overflow:hidden}
+.wallet:after{content:"";position:absolute;right:-40px;top:-40px;width:170px;height:170px;border-radius:50%;border:22px solid rgba(217,178,92,.18)}
+.wallet .bal{font-family:var(--display);font-size:52px;line-height:1;color:#f4dc96;font-variant-numeric:tabular-nums}
+.market{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.prod{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;display:grid;gap:6px;text-align:left}
+.prod:hover{border-color:var(--gold)}
+.prod .cost{font-family:var(--display);font-size:20px;color:var(--evergreen-2)}
+.prod .ic{width:38px;height:38px;border-radius:10px;background:var(--gold-soft);display:grid;place-items:center}
+.cart{display:grid;gap:8px}
+.cart .line{display:flex;justify-content:space-between;gap:8px;font-size:14px;padding-block:6px;border-bottom:1px solid var(--line)}
+.cart .line button{border:0;background:transparent;color:var(--berry);cursor:pointer;font:inherit}
+.log{display:grid;max-height:320px;overflow:auto}
+.log div{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.plus{color:var(--evergreen-2);font-weight:700}
+.minus{color:var(--berry);font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;opacity:0;transition:.25s;pointer-events:none;font-weight:500;max-width:calc(100% - 32px);z-index:20}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.chart{width:100%;height:auto;display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.gate{max-width:420px;margin:40px auto;display:grid;gap:14px;text-align:center}
+.gate input{text-align:center;font-size:24px;letter-spacing:.3em}
+.loading{padding:40px 0;text-align:center;color:var(--muted)}
+.toast.err{background:var(--berry);color:#fff}
+.hidden{display:none!important}
+.subTabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.subTabs button{font:500 14px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer}
+.subTabs button[aria-pressed="true"]{background:var(--evergreen-2);color:#fff;border-color:var(--evergreen-2)}
+.empty{color:var(--muted);font-size:14px;padding:8px 0}
+.treeHead{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-bottom:18px}
+@media(max-width:560px){.treeHead{grid-template-columns:1fr}}
+.wish.angel{border-radius:16px 16px 28px 28px;text-align:center;justify-items:center}
+.wish.angel:before{background:var(--berry)}
+.wish.angel .num{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.angelList{white-space:pre-wrap;font-size:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;text-align:left}
+#story{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:38px 36px 30px;position:relative;overflow:hidden}
+#story:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--gold),#1d4a36)}
+.storyText{max-width:700px}
+.eyebrowDark{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+#story p{font-size:17px;line-height:1.75;margin:0 0 14px}
+#story .lead{font-size:19px}
+#story blockquote{margin:22px 0;padding:4px 0 4px 18px;border-left:3px solid var(--gold);font-size:23px;line-height:1.4;font-style:italic;color:#1d4a36}
+#story .closer{font-weight:600}
+.paths{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+.path{font:inherit;text-align:left;cursor:pointer;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px;color:inherit;transition:border-color .2s,box-shadow .2s,transform .2s}
+.path:hover{transform:translateY(-2px)}
+.path .num{width:36px;height:36px;border-radius:50%;background:#f3e6c4;color:#8a6a1e;display:grid;place-items:center;font-weight:700}
+.path b{font-size:20px}
+.path .pd{color:#5f6b66;font-size:14px;line-height:1.5}
+.path.on{border-color:var(--gold);box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.path.on .num{background:var(--gold);color:#fff}
+.grpHide{display:none!important}
+#dropoff{order:9}
+#wishes{order:-2}
+#story{order:-1}
+.jump.heroCta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.jump.heroCta a.ctaBig{background:linear-gradient(#e0bd63,#b88a2e);color:#1a1a1a;font-weight:700;padding:14px 28px;border-radius:999px;font-size:16px;border:0}
+@media(max-width:980px){.paths{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.paths{grid-template-columns:1fr}#story{padding:28px 20px 22px}#story blockquote{font-size:20px}}
+.lights{position:relative;z-index:3;display:flex;justify-content:space-between;padding:0 14px;height:30px;overflow:hidden}
+.lights:before{content:"";position:absolute;left:0;right:0;top:-14px;height:24px;border-bottom:2px solid #2b3a30;border-radius:0 0 50% 50%/0 0 100% 100%}
+.lights i{position:relative;width:11px;height:17px;margin-top:9px;border-radius:50% 50% 45% 45%;animation:glow 1.4s ease-in-out infinite alternate}
+.lights i:before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#2b3a30;border-radius:1px}
+.lights i:nth-child(5n+1){background:#e63946;box-shadow:0 0 12px #e63946}
+.lights i:nth-child(5n+2){background:#2fbf71;box-shadow:0 0 12px #2fbf71;animation-delay:.3s}
+.lights i:nth-child(5n+3){background:#f2c14e;box-shadow:0 0 12px #f2c14e;animation-delay:.6s}
+.lights i:nth-child(5n+4){background:#4ea8ff;box-shadow:0 0 12px #4ea8ff;animation-delay:.9s}
+.lights i:nth-child(5n){background:#ff6fb5;box-shadow:0 0 12px #ff6fb5;animation-delay:1.2s}
+.lights i:nth-child(even){margin-top:13px}
+@keyframes glow{from{opacity:.45;filter:saturate(.7)}to{opacity:1;filter:saturate(1.3)}}
+#story:before{width:10px;background:repeating-linear-gradient(180deg,#c8102e 0 16px,#fff 16px 22px,#1f7a4a 22px 38px,#fff 38px 44px)}
+.path{border-top-width:6px}
+.path:nth-child(1){border-top-color:#c8102e}.path:nth-child(1) .num{background:#fde2e4;color:#c8102e}
+.path:nth-child(2){border-top-color:#1f7a4a}.path:nth-child(2) .num{background:#dcf2e5;color:#1f7a4a}
+.path:nth-child(3){border-top-color:#d4a72c}.path:nth-child(3) .num{background:#fbefc9;color:#8a6a1e}
+.path:nth-child(4){border-top-color:#2f6fd0}.path:nth-child(4) .num{background:#e1ecfb;color:#2f6fd0}
+.path.on .num{color:#fff!important}
+.path:nth-child(1).on .num{background:#c8102e}.path:nth-child(2).on .num{background:#1f7a4a}.path:nth-child(3).on .num{background:#d4a72c}.path:nth-child(4).on .num{background:#2f6fd0}
+.angelPath{position:relative;overflow:hidden;background:linear-gradient(160deg,#fff 40%,#fff3e0 75%,#fde2e4)}
+.angelPath .cardTree{position:absolute;right:12px;top:10px;width:64px;height:82px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
+.angelPath .pd{padding-right:0}
+.angelPath b{color:#c8102e}
+.treeH{display:flex;align-items:center;gap:14px}
+.treeH .bigTree{width:70px;height:90px;flex:0 0 auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.18))}
+.orn{animation:twinkle 1.8s ease-in-out infinite alternate}
+.orn.o2{animation-delay:.6s}.orn.o3{animation-delay:1.2s}
+.tstar{animation:twinkle 1.2s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.55}to{opacity:1}}
+#wishes{background:linear-gradient(135deg,#fff8ec,#fdecef 60%,#e9f6ee);border:1px solid var(--line);border-radius:22px;padding:28px}
+.heroCta a[href="#wishes"]{border-color:#e63946;color:#fff;background:rgba(230,57,70,.25)}
+</style>
+</head>
+<body>
+<header>
+<canvas id="snow"></canvas>
+<div class="lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+<div class="topbar">
+<div class="brand"><small>Holiday 2026</small>Rose of Sharon Senior Villa</div>
+</div>
+<div class="hero" data-for="public">
+<div class="eyebrow">Season of Giving</div>
+<h1>Fill <em id="hGoalTxt">100 Stockings</em> for Christmas</h1>
+<p>Many of our residents come to us with nothing, and some have no family left to celebrate with. Help us make sure no one here spends Christmas feeling forgotten.</p>
+<div class="heroBar">
+<div class="nums"><b id="hStock">— <small>stockings</small></b><span class="note" style="color:#d9dccd" id="hStockNote"></span></div>
+<div class="bar"><i id="hStockBar"></i></div>
+</div>
+<div class="jump heroCta"><a class="ctaBig" href="#help">Help a resident this Christmas</a><a href="#wishes">Adopt an Angel</a><a href="#story">Read their story</a></div>
+</div>
+<div class="hero" data-for="staff">
+<div class="eyebrow">Staff · Rose Points</div>
+<h1>Resident check-in &amp; the <em>Rose Market</em></h1>
+<p>Pick a resident, tap what they did, and save. At the market, add items to the cart and points come off their balance.</p>
+</div>
+<div class="hero" data-for="admin">
+<div class="eyebrow">Admin · Command Center</div>
+<h1>Giving &amp; rewards at a <em>glance</em></h1>
+<p>Money raised, stockings, rooms, wishes, pickups, messages and Rose Points, all in one place.</p>
+</div>
+</div>
+</header>
+<main class="wrap" id="public" data-for="public">
+<div class="loading" id="pubLoading">Loading…</div>
+<div id="pubBody" class="hidden" style="display:grid;gap:44px">
+<section id="story">
+<div class="storyText">
+<div class="eyebrowDark">Why it matters</div>
+<h2>Why our residents need you</h2>
+<p class="lead">Many of the seniors who come to Rose of Sharon arrive with almost nothing. A bag of clothes, maybe a few photos, and a lot of uncertainty about what comes next.</p>
+<p>Some have outlived their families. Others have simply lost touch. For many of them, there is no one coming to visit on Christmas morning.</p>
+<blockquote>We don't want anyone here to wake up on Christmas feeling forgotten.</blockquote>
+<p>This year we want every resident to have a stocking with their name on it, a gift picked just for them, and a home that feels warm and full. A new pair of socks, a favorite lotion, a card that says "you are loved." Little things mean more than you'd think.</p>
+<p class="closer">You don't have to do it all. Pick one way to help below, and you'll be part of someone's Christmas.</p>
+</div>
+</section>
+<section id="help">
+<h2>Four ways to help</h2>
+<p class="sub">Pick the one that fits you. Tap a card to see the details.</p>
+<div class="paths">
+<button type="button" class="path" data-group="gift"><span class="num">1</span><b>Give a gift</b><span class="pd">Fill a stocking for $25, grant a wish, fund the Christmas party or adopt a room.</span></button>
+<button type="button" class="path" data-group="items"><span class="num">2</span><b>Bring items</b><span class="pd">Grab a few things from our stocking list and drop them off, or we'll pick them up.</span></button>
+<button type="button" class="path angelPath" data-group="angel"><svg class="cardTree" viewBox="0 0 64 82" aria-hidden="true"><polygon points="32,8 48,30 41,30 54,48 45,48 59,68 5,68 19,48 10,48 23,30 16,30" fill="#1f7a4a"/><polygon points="32,8 48,30 41,30 54,48 45,48 59,68 32,68" fill="#17603a"/><rect x="27" y="68" width="10" height="11" rx="2" fill="#7a4a24"/><polygon points="32,0 34.6,6.2 41,6.6 36,10.6 37.8,17 32,13.4 26.2,17 28,10.6 23,6.6 29.4,6.2" fill="#f2c14e" class="tstar"/><circle class="orn" cx="27" cy="27" r="2.6" fill="#e63946"/><circle class="orn o2" cx="37" cy="36" r="2.6" fill="#f2c14e"/><circle class="orn o3" cx="22" cy="44" r="2.8" fill="#4ea8ff"/><circle class="orn" cx="42" cy="51" r="2.8" fill="#ff6fb5"/><circle class="orn o2" cx="30" cy="56" r="2.8" fill="#e63946"/><circle class="orn o3" cx="15" cy="63" r="2.8" fill="#f2c14e"/><circle class="orn" cx="49" cy="63" r="2.8" fill="#4ea8ff"/><circle class="orn o2" cx="35" cy="22" r="2.2" fill="#ff6fb5"/></svg><span class="num">3</span><b>Angel Tree</b><span class="pd">Adopt a resident, shop their Christmas list, and we'll put your gifts under the tree.</span></button>
+<button type="button" class="path" data-group="msg"><span class="num">4</span><b>Send a message</b><span class="pd">Write a resident a Christmas card. We'll tuck it in a stocking or read it at the party.</span></button>
+</div>
+</section>
+<section id="give">
+<h2>Give online</h2>
+<p class="sub">Pick an amount and you'll go to our secure QuickBooks payment page. You'll get a receipt by email.</p>
+<div class="gifts">
+<a class="gift" target="_blank" rel="noopener" id="link25"><span class="amt">$25</span><span class="what">Fill a Stocking</span><span class="why">Covers one full stocking for a resident</span><span class="go">Give $25 →</span></a>
+<a class="gift" target="_blank" rel="noopener" id="link50"><span class="amt">$50</span><span class="what">Grant a Wish</span><span class="why">Makes one resident's Christmas wish come true</span><span class="go">Give $50 →</span></a>
+<a class="gift" target="_blank" rel="noopener" id="link100"><span class="amt">$100</span><span class="what">Christmas Party</span><span class="why">Music, treats and decorations for everyone</span><span class="go">Give $100 →</span></a>
+<a class="gift" href="#rooms" data-pre="250"><span class="amt">$250</span><span class="what">Adopt a Room</span><span class="why">Sponsor part of a room makeover</span><span class="go">Chip in $250 →</span></a>
+</div>
+</section>
+<section id="stockings">
+<h2>Stocking stuffer drive</h2>
+<p class="sub">We need 100 of each item to fill our stockings. Grab a few from the list, or fill a whole stocking for $25 under Give a gift.</p>
+<div class="grid two">
+<div class="panel">
+<div class="stockHead">
+<svg viewBox="0 0 160 220" width="140" aria-label="Stocking fill level">
+<defs>
+<clipPath id="clipS"><path d="M40 40 H112 V128 Q112 150 132 160 Q156 172 150 196 Q144 216 116 212 L66 204 Q36 198 38 166 Z"/></clipPath>
+<linearGradient id="fillG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9e2b2b"/><stop offset="1" stop-color="#c74b3b"/></linearGradient>
+</defs>
+<path d="M40 40 H112 V128 Q112 150 132 160 Q156 172 150 196 Q144 216 116 212 L66 204 Q36 198 38 166 Z" fill="var(--chip)" stroke="var(--line)" stroke-width="2"/>
+<rect id="fillRect" clip-path="url(#clipS)" x="0" y="220" width="160" height="220" fill="url(#fillG)" style="transition:y .8s"/>
+<rect x="32" y="18" width="88" height="30" rx="10" fill="var(--surface)" stroke="var(--gold)" stroke-width="2.5"/>
+<text x="76" y="39" text-anchor="middle" font-family="Marcellus,Georgia,serif" font-size="15" fill="var(--gold)" id="stockPct">0%</text>
+</svg>
+<div class="grid" style="gap:10px">
+<span class="label">Stockings ready to fill</span>
+<div class="big" id="stockBig">0</div>
+<div class="meter"><i id="stockMeter"></i></div>
+<div class="ticks" id="ticks"></div>
+<span class="note">A stocking counts as ready when we have one of every item for it. Extras go to seniors in our community.</span>
+</div>
+</div>
+<div style="height:22px"></div>
+<h3 id="needTitle">What we need</h3>
+<div class="items" id="itemList"></div>
+</div>
+<div class="grid" style="align-content:start">
+<div class="panel">
+<h3>Most needed right now</h3>
+<div class="grid" style="gap:10px" id="mostNeeded"></div>
+</div>
+<div class="panel">
+<h3>Tell us what you're bringing</h3>
+<div class="formBox">
+<label class="field"><span>Item</span><select id="pledgeItem"></select></label>
+<label class="field"><span>How many</span><input id="pledgeQty" type="number" min="1" value="10"></label>
+<label class="field"><span>Your name</span><input id="pledgeName" type="text" placeholder="Name or family"></label>
+<button class="btn gold" id="pledgeBtn">Pledge these items</button>
+<span class="note">Pledges show as "on the way" until we check them in.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="rooms">
+<h2>Adopt a room</h2>
+<p class="sub">Adopt a whole room for <span class="roomGoalTxt">$1,500</span>, or chip in toward one. Each gift gives a resident fresh linens, a lamp, decor and a room that feels like home. Every fully adopted room gets a thank-you plaque on the door.</p>
+<div class="roomHead">
+<div class="panel grid" style="gap:10px">
+<span class="label">Rooms adopted</span>
+<div class="big" id="roomsBig">0</div>
+<div class="meter"><i id="roomsMeter" style="background:repeating-linear-gradient(135deg,var(--evergreen-2) 0 14px,color-mix(in srgb,var(--evergreen-2) 80%,#fff) 14px 28px)"></i></div>
+</div>
+<div class="panel grid" style="gap:10px">
+<span class="label">Raised for rooms</span>
+<div class="big" id="roomsMoney">$0</div>
+<div class="bar" style="height:18px"><i id="roomsBar"></i></div>
+</div>
+</div>
+<div class="grid two">
+<div class="rooms" id="roomGrid" style="align-content:start"></div>
+<div class="panel" id="adoptForm" style="align-self:start;scroll-margin-top:16px">
+<h3>Adopt or chip in</h3>
+<div class="formBox">
+<label class="field"><span>Which room?</span><select id="adRoom"></select></label>
+<div class="field"><span>Your gift</span>
+<div class="row" id="adAmts" style="gap:8px"></div>
+<input id="adCustom" type="number" min="25" step="25" placeholder="Or enter any amount ($)" style="margin-top:6px">
+</div>
+<label class="field"><span>Your name</span><input id="adName" type="text" placeholder="Name, family, church or business"></label>
+<div class="row"><label class="field"><span>Email</span><input id="adEmail" type="email"></label><label class="field"><span>Phone</span><input id="adPhone" type="tel"></label></div>
+<label class="field" id="plaqueWrap"><span>Name for the door plaque</span><input id="adPlaque" type="text" placeholder="Example: In loving memory of Mother Kelly"><span class="note">Rooms that are fully adopted get a thank-you plaque on the door.</span></label>
+<label class="field"><span>Note to the resident (optional)</span><textarea id="adNote" style="min-height:60px"></textarea></label>
+<button class="btn gold" id="adBtn">Submit my gift</button>
+<span class="note">We'll email you a secure QuickBooks payment link for your amount, and a receipt once it's paid.</span>
+<div id="adConfirm"></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wishes">
+<h2 class="treeH"><svg class="bigTree" viewBox="0 0 64 82" aria-hidden="true"><polygon points="32,8 48,30 41,30 54,48 45,48 59,68 5,68 19,48 10,48 23,30 16,30" fill="#1f7a4a"/><polygon points="32,8 48,30 41,30 54,48 45,48 59,68 32,68" fill="#17603a"/><rect x="27" y="68" width="10" height="11" rx="2" fill="#7a4a24"/><polygon points="32,0 34.6,6.2 41,6.6 36,10.6 37.8,17 32,13.4 26.2,17 28,10.6 23,6.6 29.4,6.2" fill="#f2c14e" class="tstar"/><circle class="orn" cx="27" cy="27" r="2.6" fill="#e63946"/><circle class="orn o2" cx="37" cy="36" r="2.6" fill="#f2c14e"/><circle class="orn o3" cx="22" cy="44" r="2.8" fill="#4ea8ff"/><circle class="orn" cx="42" cy="51" r="2.8" fill="#ff6fb5"/><circle class="orn o2" cx="30" cy="56" r="2.8" fill="#e63946"/><circle class="orn o3" cx="15" cy="63" r="2.8" fill="#f2c14e"/><circle class="orn" cx="49" cy="63" r="2.8" fill="#4ea8ff"/><circle class="orn o2" cx="35" cy="22" r="2.2" fill="#ff6fb5"/></svg><span>The Angel Tree</span></h2>
+<p class="sub">Pick an angel and we'll email you their Christmas list with sizes. Shop for them, bring the gifts in one labeled bag, and we'll make sure they're under the tree on Christmas morning.</p>
+<div class="panel grid" style="gap:10px;margin-bottom:18px"><span class="label">Angels adopted</span><div class="big" id="angelBig">0</div><div class="bar" style="height:14px"><i id="angelBar"></i></div><span class="note" id="angelNote"></span></div><div class="wishes" id="wishGrid"></div>
+<div id="wishConfirm" style="margin-top:14px"></div>
+</section>
+<section id="dropoff">
+<h2>Drop off or schedule a pickup</h2>
+<p class="sub">Whatever is easiest for you.</p>
+<div class="grid half">
+<div class="panel">
+<h3>Drop off</h3>
+<div class="contact">
+<b>Rose of Sharon Senior Villa</b>
+<span id="addrTxt"></span>
+<span>Call ahead: <span id="phoneTxt"></span></span>
+<span class="note" style="margin-top:8px">Please bring stocking items unwrapped so we can sort them. Wish gifts can be wrapped; label them with the name on the tag.</span>
+</div>
+<div style="height:14px"></div>
+<a class="btn ghost" target="_blank" rel="noopener" id="mapLink">Get directions</a>
+</div>
+<div class="panel">
+<h3>Request a pickup</h3>
+<div class="formBox">
+<div class="row"><label class="field"><span>Name</span><input id="puName" type="text"></label><label class="field"><span>Phone</span><input id="puPhone" type="tel"></label></div>
+<label class="field"><span>Pickup address</span><input id="puAddr" type="text"></label>
+<div class="row"><label class="field"><span>Best day</span><input id="puDate" type="date"></label><label class="field"><span>Time window</span><select id="puTime"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label></div>
+<label class="field"><span>What are you donating?</span><input id="puWhat" type="text" placeholder="Example: 2 boxes of socks and lotion"></label>
+<button class="btn" id="puBtn">Request pickup</button>
+<div id="puConfirm"></div>
+</div>
+</div>
+</div>
+</section>
+<section id="message">
+<h2>Send a message to our residents</h2>
+<p class="sub">We'll print your card and tuck it into a stocking, or read it at the Christmas party.</p>
+<div class="panel">
+<div class="formBox">
+<div class="row"><label class="field"><span>From</span><input id="msgFrom" type="text" placeholder="Your name, church or group"></label><label class="field"><span>For</span><select id="msgTo"><option>All residents</option><option>A resident whose wish I granted</option><option>Our caregivers</option></select></label></div>
+<label class="field"><span>Your message</span><textarea id="msgText" placeholder="Merry Christmas! You are loved and thought of this season."></textarea></label>
+<div class="row"><button class="btn gold" id="msgBtn">Send my message</button><span class="note">We read every message before it's shared.</span></div>
+<div id="msgConfirm"></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<main class="wrap" id="staff" data-for="staff">
+<div class="gate panel" id="staffGate">
+<h3>Staff sign-in</h3>
+<span class="note">Enter the staff PIN to record points.</span>
+<input id="staffName" type="text" placeholder="Your name" style="font-size:16px;letter-spacing:0">
+<input id="staffPin" type="text" inputmode="numeric" autocomplete="one-time-code" name="ros-staff-code" style="-webkit-text-security:disc" placeholder="PIN">
+<button class="btn" id="staffGo">Sign in</button>
+</div>
+<div id="staffBody" class="hidden">
+<div class="subTabs">
+<button data-st="points" aria-pressed="true">Award points</button>
+<button data-st="market" aria-pressed="false">Rose Market</button>
+</div>
+<div id="stPoints">
+<div class="grid two">
+<div class="grid" style="align-content:start">
+<div class="panel">
+<div class="stepHead"><span class="num">1</span><h3>Choose a resident</h3></div>
+<input id="resSearch" type="search" placeholder="Search by name or room" style="margin-bottom:12px">
+<div class="people" id="peoplePts"></div>
+</div>
+<div class="panel">
+<div class="stepHead"><span class="num">2</span><h3>What did they do?</h3></div>
+<div class="duties" id="dutyGrid"></div>
+</div>
+</div>
+<div class="grid" style="align-content:start">
+<div class="panel">
+<div class="stepHead"><span class="num">3</span><h3>Review &amp; save</h3></div>
+<div id="ptSummary" class="grid" style="gap:10px"></div>
+</div>
+<div class="panel">
+<h3>Today's entries</h3>
+<div class="log" id="ptLog"></div>
+</div>
+</div>
+</div>
+</div>
+<div id="stMarket" class="hidden">
+<div class="grid two">
+<div class="grid" style="align-content:start">
+<div class="panel">
+<div class="stepHead"><span class="num">1</span><h3>Who's shopping?</h3></div>
+<div class="people" id="peopleMk"></div>
+</div>
+<div class="panel">
+<div class="stepHead"><span class="num">2</span><h3>Add items</h3></div>
+<div class="market" id="marketGrid"></div>
+</div>
+</div>
+<div class="grid" style="align-content:start">
+<div class="wallet">
+<span class="label" style="color:#c9cfbf" id="wName">Choose a resident</span>
+<div class="bal" id="wBal">—</div>
+<span style="font-size:13px;color:#d9dccd" id="wAfter">Rose Points</span>
+</div>
+<div class="panel">
+<div class="stepHead"><span class="num">3</span><h3>Cart</h3></div>
+<div class="cart" id="cart"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<main class="wrap" id="admin" data-for="admin">
+<div class="gate panel" id="adminGate">
+<h3>Admin sign-in</h3>
+<span class="note">Enter the admin PIN.</span>
+<input id="adminPin" type="text" inputmode="numeric" autocomplete="one-time-code" name="ros-admin-code" style="-webkit-text-security:disc" placeholder="PIN">
+<button class="btn" id="adminGo">Sign in</button>
+</div>
+<div id="adminBody" class="hidden" style="display:grid;gap:18px">
+<div class="row" style="justify-content:space-between"><span class="note" id="adminUpdated"></span><div class="row"><button class="btn sm ghost" id="adminRefresh">Refresh</button><a class="btn sm ghost" target="_blank" rel="noopener" id="sheetLink">Open spreadsheet</a></div></div>
+<div class="kpis" id="kpis"></div>
+<div class="subTabs" id="adminTabs">
+<button data-at="giving" aria-pressed="true">Giving</button>
+<button data-at="stockings" aria-pressed="false">Stockings</button>
+<button data-at="rooms" aria-pressed="false">Rooms</button>
+<button data-at="wishes" aria-pressed="false">Angel Tree</button>
+<button data-at="pickups" aria-pressed="false">Pickups &amp; messages</button>
+<button data-at="points" aria-pressed="false">Rose Points</button>
+</div>
+<div data-ap="giving" class="grid two">
+<div class="panel">
+<h3>Money raised by gift</h3>
+<svg class="chart" id="giftChart" viewBox="0 0 360 200"></svg>
+<div class="row" style="justify-content:space-between;margin-top:8px"><span class="note">Season goal</span><b id="goalTxt"></b></div>
+<div class="bar" style="margin-top:6px"><i id="goalBar"></i></div>
+</div>
+<div class="panel">
+<h3>Log a QuickBooks payment</h3>
+<div class="formBox">
+<div class="row"><label class="field"><span>Donor</span><input id="dnDonor" type="text"></label><label class="field"><span>Amount</span><input id="dnAmt" type="number" min="1"></label></div>
+<label class="field"><span>Gift</span><select id="dnGift"><option>Fill a Stocking</option><option>Grant a Wish</option><option>Christmas Party</option><option>General gift</option></select></label>
+<button class="btn" id="dnBtn">Add payment</button>
+</div>
+<div style="height:16px"></div>
+<h3>Recent payments</h3>
+<div class="log" id="dnLog"></div>
+</div>
+</div>
+<div data-ap="stockings" class="panel hidden">
+<div class="row" style="justify-content:space-between;margin-bottom:10px"><h3 style="margin:0">Stocking inventory</h3><span class="note">Check in items as they arrive</span></div>
+<div class="scroll"><table id="invTable"></table></div>
+<div style="height:18px"></div>
+<h3>Recent pledges</h3>
+<div class="scroll"><table id="pledgeTable"></table></div>
+</div>
+<div data-ap="rooms" class="panel hidden">
+<h3>Rooms</h3>
+<div class="scroll"><table id="roomTable"></table></div>
+<div style="height:18px"></div>
+<h3>Adopt a Room submissions</h3>
+<span class="note">Tap the payment status to move it along: Awaiting payment → Link sent → Paid. Paid gifts count toward the season total.</span>
+<div class="scroll" style="margin-top:8px"><table id="adoptTable"></table></div>
+</div>
+<div data-ap="wishes" class="grid two hidden">
+<div class="panel">
+<h3>Angel Tree</h3>
+<span class="note">Tap the status to move it along: Adopted → Gift received → Delivered. Tap Edit on any angel to change their name, needs, sizes or wish.</span>
+<div class="scroll" style="margin-top:8px"><table id="wishTable"></table></div>
+</div>
+<div class="panel" style="align-self:start">
+<h3 id="wsTitle">Add an angel</h3>
+<div class="formBox">
+<label class="field"><span>Resident (first name and last initial)</span><input id="wsWho" type="text" placeholder="Mary L."></label>
+<label class="field"><span>What they need (one per line)</span><textarea id="wsNeeds" placeholder="Warm robe&#10;Slippers&#10;Body lotion&#10;Socks"></textarea></label><label class="field"><span>Sizes</span><input id="wsSizes" type="text" placeholder="Shirt L, pants 34x30, shoes 10"></label><label class="field"><span>Christmas wish (optional)</span><input id="wsWish" type="text" placeholder="Gospel music CD"></label>
+<button class="btn" id="wsBtn">Add angel</button>
+<button class="btn ghost hidden" id="wsCancel" type="button">Cancel</button>
+</div>
+</div>
+</div>
+<div data-ap="pickups" class="grid half hidden">
+<div class="panel">
+<h3>Pickup requests</h3>
+<span class="note">Tap the status: New → Scheduled → Picked up.</span>
+<div class="scroll" style="margin-top:8px"><table id="puTable"></table></div>
+</div>
+<div class="panel">
+<h3>Messages to review</h3>
+<div class="grid" style="gap:10px" id="msgList"></div>
+</div>
+</div>
+<div data-ap="points" class="grid two hidden">
+<div class="panel">
+<h3>Rose Points balances</h3>
+<svg class="chart" id="ptsChart" viewBox="0 0 360 230"></svg>
+<div style="height:14px"></div>
+<h3>Today's activity</h3>
+<div class="log" id="adPtLog"></div>
+</div>
+<div class="grid" style="align-content:start">
+<div class="panel">
+<h3>Add a resident</h3>
+<div class="formBox">
+<div class="row"><label class="field"><span>Name</span><input id="rsName" type="text"></label><label class="field" style="flex:0 1 110px"><span>Room</span><input id="rsRoom" type="text"></label></div>
+<label class="field"><span>Starting points (optional)</span><input id="rsStart" type="number" min="0"></label>
+<button class="btn" id="rsBtn">Add resident</button>
+</div>
+</div>
+<div class="panel">
+<h3>Adjust points</h3>
+<div class="formBox">
+<label class="field"><span>Resident</span><select id="ajRes"></select></label>
+<div class="row"><label class="field" style="flex:0 1 130px"><span>Points (+ or −)</span><input id="ajPts" type="number"></label><label class="field"><span>Reason</span><input id="ajWhy" type="text" placeholder="Birthday bonus"></label></div>
+<button class="btn" id="ajBtn">Save adjustment</button>
+<span class="note">Duties, point values and market items are edited on the Duties and Market tabs of the spreadsheet.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+const PAGE = "public";
+const API = "https://script.google.com/macros/s/AKfycby48XCTC2w20j_-O86s6IbFBfy-zRVEnM3So05bsrM46CtHERSIEvBD658MwUnzFQM/exec";
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const fmt = n => "$" + Math.round(n).toLocaleString();
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const initials = n => String(n).replace(/\./g, "").split(/\s+/).filter(Boolean).map(x => x[0]).join("").slice(0, 2).toUpperCase();
+const ss = { get(k) { try { return sessionStorage.getItem(k) } catch (e) { return null } }, set(k, v) { try { sessionStorage.setItem(k, v) } catch (e) {} } };
+function toast(m, err) { const t = $("#toast"); t.textContent = m; t.classList.toggle("err", !!err); t.classList.add("on"); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("on"), 2800) }
+function run(fn, ...args) {
+return fetch(API, { method: "POST", body: JSON.stringify({ fn: fn, args: args }) }).then(r => r.json()).then(d => { if (!d || !d.ok) throw new Error((d && d.error) || "Something went wrong. Please try again."); return d.data; }).catch(e => { toast((e && e.message || String(e)).replace(/^Exception: /, ""), true); throw e; });
+}
+function busy(btn, on, label) { if (!btn) return; if (on) { btn._t = btn.textContent; btn.textContent = label || "Saving…"; btn.disabled = true } else { btn.textContent = btn._t; btn.disabled = false } }
+$$("[data-for]").forEach(el => el.classList.toggle("hidden", el.dataset.for !== PAGE));
+let P = null, adAmt = 0;
+function loadPublic() { run("getPublicData").then(d => { P = d; $("#pubLoading").classList.add("hidden"); $("#pubBody").classList.remove("hidden"); renderPublic() }) }
+function renderPublic() {
+const pct = Math.round(P.stockReady / P.stockGoal * 100);
+$("#hGoalTxt").textContent = P.stockGoal + " Stockings";
+$("#hStock").innerHTML = `${P.stockReady} <small>of ${P.stockGoal} stockings</small>`;
+$("#hStockBar").style.width = pct + "%";
+$("#hStockNote").textContent = `${P.stockGoal - P.stockReady} to go`;
+$("#stockBig").innerHTML = `${P.stockReady} <small>of ${P.stockGoal}</small>`;
+$("#stockMeter").style.width = pct + "%";
+$("#stockPct").textContent = pct + "%";
+$("#fillRect").setAttribute("y", 40 + (1 - pct / 100) * 175);
+$("#ticks").innerHTML = [0, .25, .5, .75, 1].map(f => `<span>${Math.round(P.stockGoal * f)}</span>`).join("");
+$("#needTitle").textContent = `What we need · ${P.items[0] ? P.items[0].goal : 100} of each`;
+$("#link25").href = P.links[25]; $("#link50").href = P.links[50]; $("#link100").href = P.links[100];
+$("#addrTxt").textContent = P.address; $("#phoneTxt").textContent = P.phone;
+$("#mapLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(P.address || "");
+$$(".roomGoalTxt").forEach(e => e.textContent = fmt(P.roomGoal));
+$("#itemList").innerHTML = P.items.map(it => { const have = Math.min(it.goal, it.have), d = have >= it.goal; return `<div class="item ${d ? "done" : ""}"><span>${esc(it.name)}</span><span class="n"><b>${d ? "Done" : (it.goal - have) + " needed"}</b>${it.pledged ? ` · ${it.pledged} on the way` : ""}</span><div class="bar"><i style="width:${have / it.goal * 100}%"></i></div></div>` }).join("");
+const low = [...P.items].filter(i => i.have < i.goal).sort((a, b) => (a.have + a.pledged) / a.goal - (b.have + b.pledged) / b.goal).slice(0, 4);
+$("#mostNeeded").innerHTML = low.length ? low.map(it => `<div class="row" style="justify-content:space-between"><span>${esc(it.name)}</span><span class="pill low">${it.goal - it.have} needed</span></div>`).join("") : `<span class="empty">We have everything on the list. Thank you!</span>`;
+const sel = $("#pledgeItem"), cur = sel.value;
+sel.innerHTML = P.items.map(it => `<option>${esc(it.name)}</option>`).join(""); if (cur) sel.value = cur;
+renderRooms(); renderWishes();
+}
+function renderRooms() {
+const G = P.roomGoal, full = P.rooms.filter(r => r.amt >= G).length, money = P.rooms.reduce((a, r) => a + Math.min(G, r.amt), 0), total = G * P.rooms.length;
+$("#roomsBig").innerHTML = `${full} <small>of ${P.rooms.length}</small>`; $("#roomsMeter").style.width = full / P.rooms.length * 100 + "%";
+$("#roomsMoney").innerHTML = `${fmt(money)} <small>of ${fmt(total)}</small>`; $("#roomsBar").style.width = money / total * 100 + "%";
+$("#roomGrid").innerHTML = P.rooms.map(r => { const f = r.amt >= G, p = Math.min(100, r.amt / G * 100); return `<div class="room ${f ? "full" : ""}"><span class="knob"></span><span class="label">Room</span><span class="no">${esc(r.no)}</span>${f ? `<span class="bow">Adopted by ${esc(r.plaque || r.by)}</span><div class="bar"><i style="width:100%"></i></div>` : `<span class="pill ${r.amt ? "warn" : "low"}">${r.amt ? fmt(G - r.amt) + " to go" : "Open"}</span><div class="bar"><i style="width:${p}%"></i></div><span class="amt">${fmt(r.amt)} of ${fmt(G)}</span><div class="acts"><button class="btn sm gold" data-adopt="${esc(r.no)}" data-a="full">${r.amt ? "Finish · " + fmt(G - r.amt) : "Adopt · " + fmt(G)}</button><button class="btn sm ghost" data-adopt="${esc(r.no)}" data-a="250">Chip in</button></div>`}</div>` }).join("");
+$$("[data-adopt]").forEach(b => b.onclick = () => chooseRoom(b.dataset.adopt, b.dataset.a));
+renderAdopt();
+}
+function roomBy(no) { return P.rooms.find(r => String(r.no) === String(no)) }
+function chooseRoom(no, a) { const r = roomBy(no); $("#adRoom").value = no; adAmt = a === "full" ? P.roomGoal - r.amt : Math.min(250, P.roomGoal - r.amt); $("#adCustom").value = ""; renderAdopt(); $("#adoptForm").scrollIntoView({ behavior: "smooth", block: "start" }) }
+function renderAdopt() {
+const G = P.roomGoal, sel = $("#adRoom"), cur = sel.value;
+sel.innerHTML = `<option value="0">Any room that needs it most</option>` + P.rooms.filter(r => r.amt < G).map(r => `<option value="${esc(r.no)}">Room ${esc(r.no)} · ${fmt(G - r.amt)} to go</option>`).join("");
+if ([...sel.options].some(o => o.value === cur)) sel.value = cur;
+const room = sel.value !== "0" ? roomBy(sel.value) : null, left = room ? G - room.amt : G;
+const opts = [[250, "$250"], [500, "$500"], [750, "$750"], [left, left === G ? "Whole room · " + fmt(G) : "Finish it · " + fmt(left)]].filter((o, i, a) => o[0] <= left && a.findIndex(x => x[0] === o[0]) === i);
+if (!$("#adCustom").value && !opts.some(o => o[0] === adAmt)) adAmt = left;
+$("#adAmts").innerHTML = opts.map(o => `<button class="duty" style="padding:9px 14px;flex:0 0 auto" data-am="${o[0]}" aria-pressed="${!$("#adCustom").value && adAmt === o[0]}">${o[1]}</button>`).join("");
+$$("[data-am]").forEach(b => b.onclick = () => { adAmt = +b.dataset.am; $("#adCustom").value = ""; renderAdopt() });
+const amt = $("#adCustom").value ? +$("#adCustom").value : adAmt;
+$("#plaqueWrap").classList.toggle("hidden", !(amt >= left));
+$("#adBtn").textContent = `Submit my ${fmt(amt || 0)} gift`;
+}
+function renderWishes() {
+const A = P.angels || [], adopted = A.filter(a => a.adopted).length;
+$("#angelBig").innerHTML = `${adopted} <small>of ${A.length} angels adopted</small>`; $("#angelBar").style.width = (A.length ? adopted / A.length * 100 : 0) + "%";
+$("#angelNote").textContent = A.length ? `${A.length - adopted} still waiting · gifts due ${P.deadline}` : "";
+$("#wishGrid").innerHTML = A.length ? A.map(a => `<div class="wish angel ${a.adopted ? "claimed" : ""}"><span class="num">Angel #${esc(a.no)}</span><span class="who">${esc(a.who)}</span><span class="w">Needs: ${esc(a.teaser)}${a.needs.split(/[\n,;]/).filter(x => x.trim()).length > 3 ? " and more" : ""}</span>${a.adopted ? `<span class="pill ok">Adopted</span>` : `<button class="btn sm gold" data-angel="${a.id}">Adopt this angel</button>`}</div>`).join("") : `<span class="empty">Our angels are coming soon. Check back shortly!</span>`;
+$$("[data-angel]").forEach(b => b.onclick = () => {
+const a = A.find(x => String(x.id) === b.dataset.angel);
+$("#wishConfirm").innerHTML = `<div class="confirm"><b>Adopting Angel #${esc(a.no)} · ${esc(a.who)}</b><br><span class="note">We'll email you their full list with sizes, plus drop-off details.</span><div class="row" style="margin-top:10px"><input id="wName" type="text" placeholder="Your name" style="flex:1 1 180px;width:auto"><input id="wEmail" type="email" placeholder="Email" style="flex:1 1 180px;width:auto"><input id="wPhone" type="tel" placeholder="Phone" style="flex:1 1 140px;width:auto"></div><div class="row" style="margin-top:10px"><button class="btn gold" id="angelGo">Adopt &amp; email me the list</button></div></div>`;
+$("#angelGo").onclick = () => { const btn = $("#angelGo"); busy(btn, true, "Sending…");
+run("adoptAngel", { id: a.id, name: $("#wName").value, email: $("#wEmail").value, phone: $("#wPhone").value }).then(r => { P = r.snap; $("#wishConfirm").innerHTML = `<div class="confirm"><b>Thank you! You adopted Angel #${esc(a.no)}.</b> We emailed you this list. Please bring gifts by ${esc(r.deadline)}, in one bag labeled "Angel #${esc(a.no)}".<div class="angelList">${esc(r.list)}</div></div>`; renderPublic() }).catch(() => busy(btn, false)) };
+$("#wishConfirm").scrollIntoView({ behavior: "smooth", block: "center" });
+});
+}
+function renderWishesOld() {
+$("#wishGrid").innerHTML = P.wishes.length ? P.wishes.map(w => `<div class="wish ${w.granted ? "claimed" : ""}"><span class="label">Christmas wish</span><span class="who">${esc(w.who)}</span><span class="w">${esc(w.wish)}</span>${w.granted ? `<span class="pill ok">Granted</span>` : `<button class="btn sm gold" data-wish="${w.id}">I'll grant this wish</button>`}</div>`).join("") : `<span class="empty">Wish tags are coming soon. Check back shortly!</span>`;
+$$("[data-wish]").forEach(b => b.onclick = () => {
+const w = P.wishes.find(x => String(x.id) === b.dataset.wish);
+$("#wishConfirm").innerHTML = `<div class="confirm"><b>Granting ${esc(w.who)}'s wish: ${esc(w.wish)}</b><div class="row" style="margin-top:10px"><input id="wName" type="text" placeholder="Your name" style="flex:1 1 180px;width:auto"><input id="wEmail" type="email" placeholder="Email" style="flex:1 1 180px;width:auto"><input id="wPhone" type="tel" placeholder="Phone" style="flex:1 1 140px;width:auto"></div><div class="row" style="margin-top:10px"><button class="btn sm" id="wishBring">I'll bring it wrapped</button><button class="btn sm gold" id="wishPay">I'll give $50 instead</button></div></div>`;
+const go = how => { const btn = how === "pay" ? $("#wishPay") : $("#wishBring"); busy(btn, true);
+run("claimWish", { id: w.id, name: $("#wName").value, email: $("#wEmail").value, phone: $("#wPhone").value, how }).then(d => { P = d; $("#wishConfirm").innerHTML = `<div class="confirm"><b>Thank you!</b> ${esc(w.who)}'s wish is yours.${how === "pay" ? ` <a href="${esc(P.links[50])}" target="_blank" rel="noopener">Give $50 here →</a>` : " Please drop it off wrapped with the name on the tag."}</div>`; renderPublic() }).catch(() => busy(btn, false)) };
+$("#wishBring").onclick = () => go("bring"); $("#wishPay").onclick = () => go("pay");
+$("#wishConfirm").scrollIntoView({ behavior: "smooth", block: "center" });
+});
+}
+if (PAGE === "public") {
+$("#adRoom").onchange = () => { adAmt = 0; renderAdopt() };
+$("#adCustom").oninput = renderAdopt;
+$$("[data-pre]").forEach(a => a.addEventListener("click", () => { adAmt = +a.dataset.pre; $("#adRoom").value = "0"; renderAdopt() }));
+$("#adBtn").onclick = () => {
+const amt = $("#adCustom").value ? +$("#adCustom").value : adAmt, btn = $("#adBtn"), name = $("#adName").value;
+busy(btn, true, "Sending…");
+run("submitAdoption", { room: $("#adRoom").value, amount: amt, name, email: $("#adEmail").value, phone: $("#adPhone").value, plaque: $("#adPlaque").value, note: $("#adNote").value })
+.then(r => { busy(btn, false); P = r.snap; $("#adConfirm").innerHTML = `<div class="confirm"><b>Thank you, ${esc(name)}!</b><br>${fmt(r.amount)} for Room ${esc(r.room)}${r.full ? ". That room is now fully adopted!" : "."} Watch your email for your payment link.</div>`; ["adName", "adEmail", "adPhone", "adPlaque", "adNote", "adCustom"].forEach(id => $("#" + id).value = ""); renderPublic() })
+.catch(() => busy(btn, false));
+};
+$("#pledgeBtn").onclick = () => { const btn = $("#pledgeBtn"), q = +$("#pledgeQty").value || 1, it = $("#pledgeItem").value; busy(btn, true);
+run("submitPledge", { item: it, qty: q, name: $("#pledgeName").value }).then(d => { busy(btn, false); P = d; toast(`Thank you! ${q} ${it.toLowerCase()} on the way`); renderPublic() }).catch(() => busy(btn, false)) };
+$("#puBtn").onclick = () => { const btn = $("#puBtn"); busy(btn, true, "Sending…");
+run("requestPickup", { name: $("#puName").value, phone: $("#puPhone").value, address: $("#puAddr").value, day: $("#puDate").value, time: $("#puTime").value, items: $("#puWhat").value })
+.then(() => { busy(btn, false); $("#puConfirm").innerHTML = `<div class="confirm">Got it, ${esc($("#puName").value)}. We'll call you to confirm your pickup.</div>`; ["puName", "puPhone", "puAddr", "puDate", "puWhat"].forEach(id => $("#" + id).value = "") }).catch(() => busy(btn, false)) };
+$("#msgBtn").onclick = () => { const btn = $("#msgBtn"); busy(btn, true, "Sending…");
+run("sendMessage", { from: $("#msgFrom").value, to: $("#msgTo").value, message: $("#msgText").value })
+.then(() => { busy(btn, false); $("#msgText").value = ""; $("#msgConfirm").innerHTML = `<div class="confirm">Thank you! Your message will be shared with our residents.</div>` }).catch(() => busy(btn, false)) };
+loadPublic();
+}
+let ST = null, sPin = "", sName = "", selRes = null, selDuties = new Set(), mkRes = null, cart = [];
+function staffSignIn(pin, name) {
+const btn = $("#staffGo"); busy(btn, true, "Checking…");
+run("getStaffData", pin).then(d => { busy(btn, false); sPin = pin; sName = name; ss.set("rosStaffPin", pin); ss.set("rosStaffName", name); ST = d; $("#staffGate").classList.add("hidden"); $("#staffBody").classList.remove("hidden"); renderStaff() }).catch(() => busy(btn, false));
+}
+function peopleHTML(sel, attr) { return ST.residents.length ? ST.residents.map(r => `<button class="person" ${attr}="${esc(r.name)}" aria-pressed="${sel === r.name}"><span class="av">${esc(initials(r.name))}</span><b>${esc(r.name)}</b><span class="p">${esc(r.room ? "Rm " + r.room : "")} · <b>${r.pts}</b> pts</span></button>`).join("") : `<span class="empty">No residents yet. An admin can add them.</span>` }
+function resBy(n) { return ST.residents.find(r => r.name === n) }
+function renderStaff() {
+const q = ($("#resSearch").value || "").toLowerCase();
+$("#peoplePts").innerHTML = peopleHTML(selRes, "data-pr");
+$$("[data-pr]").forEach(b => { const r = resBy(b.dataset.pr); b.classList.toggle("hidden", !!q && !(r.name + " " + r.room).toLowerCase().includes(q)); b.onclick = () => { selRes = r.name; selDuties.clear(); renderStaff() } });
+$("#dutyGrid").innerHTML = ST.duties.map(d => `<button class="duty" data-du="${esc(d.name)}" aria-pressed="${selDuties.has(d.name)}" ${selRes === null ? "disabled" : ""}><span>${esc(d.name)}</span><b>+${d.pts}</b></button>`).join("");
+$$("[data-du]").forEach(b => b.onclick = () => { const n = b.dataset.du; selDuties.has(n) ? selDuties.delete(n) : selDuties.add(n); renderStaff() });
+const r = selRes ? resBy(selRes) : null, picked = ST.duties.filter(d => selDuties.has(d.name)), tot = picked.reduce((a, d) => a + d.pts, 0);
+$("#ptSummary").innerHTML = r ? `<div class="row"><span class="av">${esc(initials(r.name))}</span><div><b>${esc(r.name)}</b><div class="note">${r.room ? "Rm " + esc(r.room) + " · " : ""}${r.pts} points now</div></div></div>
+${picked.map(d => `<div class="row" style="justify-content:space-between"><span>${esc(d.name)}</span><span class="plus">+${d.pts}</span></div>`).join("") || `<span class="note">Tap one or more duties.</span>`}
+<div class="row" style="justify-content:space-between;border-top:1px solid var(--line);padding-top:10px"><b>New balance</b><b style="font-family:var(--display);font-size:26px;font-weight:400;color:var(--gold)">${r.pts + tot}</b></div>
+<button class="btn" id="savePts" ${tot ? "" : "disabled"}>Save ${tot ? "+" + tot + " points" : ""}</button>` : `<span class="note">Pick a resident to start.</span>`;
+const sp = $("#savePts"); if (sp) sp.onclick = () => { busy(sp, true); run("awardPoints", sPin, r.name, [...selDuties], sName).then(d => { ST = d; toast(`Saved +${tot} for ${r.name}`); selDuties.clear(); selRes = null; renderStaff() }).catch(() => busy(sp, false)) };
+$("#ptLog").innerHTML = ST.today.length ? ST.today.map(l => `<div><span><b>${esc(l.who)}</b><br><span class="note">${esc(l.what)} · ${esc(l.staff)}</span></span><span class="${l.pts > 0 ? "plus" : "minus"}">${l.pts > 0 ? "+" : ""}${l.pts}</span></div>`).join("") : `<span class="empty">Nothing saved yet today.</span>`;
+$("#peopleMk").innerHTML = peopleHTML(mkRes, "data-mr");
+$$("[data-mr]").forEach(b => b.onclick = () => { mkRes = b.dataset.mr; cart = []; renderStaff() });
+const m = mkRes ? resBy(mkRes) : null, cartTot = cart.reduce((a, n) => a + (ST.market.find(x => x.name === n) || { pts: 0 }).pts, 0), left = m ? m.pts - cartTot : 0;
+$("#marketGrid").innerHTML = ST.market.map(p => { const ok = m && p.pts <= left; return `<button class="prod" data-pd="${esc(p.name)}" ${ok ? "" : "disabled style='opacity:.45;cursor:not-allowed'"}><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z M9 8V6a3 3 0 016 0v2"/></svg></span><b>${esc(p.name)}</b><span class="cost">${p.pts} pts</span></button>` }).join("");
+$$("[data-pd]").forEach(b => b.onclick = () => { cart.push(b.dataset.pd); renderStaff() });
+$("#wName").textContent = m ? `${m.name}${m.room ? " · Rm " + m.room : ""}` : "Choose a resident";
+$("#wBal").textContent = m ? m.pts : "—";
+$("#wAfter").textContent = m && cartTot ? `${left} left after this purchase` : "Rose Points";
+$("#cart").innerHTML = m ? (cart.length ? cart.map((n, k) => `<div class="line"><span>${esc(n)}</span><span>${ST.market.find(x => x.name === n).pts} pts <button data-rm="${k}" aria-label="Remove">✕</button></span></div>`).join("") + `<div class="line" style="border:0"><b>Total</b><b>${cartTot} pts</b></div><button class="btn gold" id="checkout">Complete purchase</button>` : `<span class="note">Tap items to add them.</span>`) : `<span class="note">Pick who's shopping first.</span>`;
+$$("[data-rm]").forEach(b => b.onclick = () => { cart.splice(+b.dataset.rm, 1); renderStaff() });
+const co = $("#checkout"); if (co) co.onclick = () => { busy(co, true); run("checkout", sPin, m.name, cart, sName).then(d => { ST = d; toast(`${m.name} spent ${cartTot} points`); cart = []; renderStaff() }).catch(() => busy(co, false)) };
+}
+if (PAGE === "staff") {
+$("#staffName").value = ss.get("rosStaffName") || "";
+$("#staffGo").onclick = () => { if (!$("#staffName").value.trim()) { toast("Add your name so entries show who recorded them", true); return } staffSignIn($("#staffPin").value.trim(), $("#staffName").value.trim()) };
+$("#staffPin").onkeydown = e => { if (e.key === "Enter") $("#staffGo").click() };
+$("#resSearch").oninput = renderStaff;
+$$("[data-st]").forEach(b => b.onclick = () => { $$("[data-st]").forEach(x => x.setAttribute("aria-pressed", x === b)); $("#stPoints").classList.toggle("hidden", b.dataset.st !== "points"); $("#stMarket").classList.toggle("hidden", b.dataset.st !== "market") });
+const sp = ss.get("rosStaffPin"); if (sp && ss.get("rosStaffName")) staffSignIn(sp, ss.get("rosStaffName"));
+}
+let A = null, aPin = "";
+function hbars(svg, data, unit) {
+if (!data.length) { svg.setAttribute("viewBox", "0 0 360 40"); svg.innerHTML = `<text x="0" y="24" font-size="13" fill="var(--muted)">Nothing yet</text>`; return }
+const w = 360, rowH = 26, max = Math.max(...data.map(d => d[1]), 1), lw = 120, bw = w - lw - 64;
+svg.setAttribute("viewBox", `0 0 ${w} ${data.length * rowH + 10}`);
+svg.innerHTML = data.map((d, i) => { const y = i * rowH + 5, len = Math.max(2, d[1] / max * bw); return `<text x="${lw - 8}" y="${y + 14}" text-anchor="end" font-size="12" fill="var(--muted)">${esc(String(d[0]).slice(0, 18))}</text><rect x="${lw}" y="${y + 3}" width="${len}" height="15" rx="4" fill="${i === 0 ? "var(--gold)" : "var(--evergreen-2)"}"/><text x="${lw + len + 6}" y="${y + 15}" font-size="12" font-weight="700" fill="var(--ink)">${unit === "$" ? fmt(d[1]) : d[1]}</text>` }).join("");
+}
+function pill(status) { const s = String(status || ""); const ok = /paid|picked up|delivered|approved/i.test(s), warn = /sent|scheduled|received|claimed/i.test(s); return ok ? "ok" : warn ? "warn" : "low" }
+function adminSignIn(pin) { const btn = $("#adminGo"); busy(btn, true, "Checking…"); run("getAdminData", pin).then(d => { busy(btn, false); aPin = pin; ss.set("rosAdminPin", pin); A = d; $("#adminGate").classList.add("hidden"); $("#adminBody").classList.remove("hidden"); renderAdmin() }).catch(() => busy(btn, false)) }
+function adminCall(fn, btn, ...args) { busy(btn, true); return run(fn, aPin, ...args).then(d => { A = d; renderAdmin(); busy(btn, false); return d }).catch(() => busy(btn, false)) }
+function renderAdmin() {
+const p = A.pub, G = p.roomGoal, fullRooms = p.rooms.filter(r => r.amt >= G).length, granted = A.wishes.filter(w => w.by).length, onHand = p.items.reduce((a, i) => a + Math.min(i.goal, i.have), 0), need = p.items.reduce((a, i) => a + i.goal, 0);
+$("#sheetLink").href = A.sheetUrl; $("#adminUpdated").textContent = "Updated " + new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+const k = [["Raised", fmt(p.raised), p.raised / p.moneyGoal], ["Stockings ready", `${p.stockReady}/${p.stockGoal}`, p.stockReady / p.stockGoal], ["Items on hand", `${onHand}/${need}`, need ? onHand / need : 0], ["Rooms adopted", `${fullRooms}/${p.rooms.length}`, fullRooms / p.rooms.length], ["Angels adopted", `${(A.angels || []).filter(a => a.by).length}/${(A.angels || []).length}`, (A.angels || []).length ? A.angels.filter(a => a.by).length / A.angels.length : 0], ["To follow up", A.pickups.filter(x => x.status === "New").length + A.messages.filter(x => x.status === "To review").length + A.adoptions.filter(x => x.status === "Awaiting payment").length, null]];
+$("#kpis").innerHTML = k.map(x => `<div class="kpi"><span class="label">${x[0]}</span><b>${x[1]}</b>${x[2] !== null ? `<div class="bar"><i style="width:${Math.min(100, x[2] * 100)}%"></i></div>` : `<span class="note">new pickups, messages, payments</span>`}</div>`).join("");
+hbars($("#giftChart"), Object.entries(A.byGift).sort((a, b) => b[1] - a[1]), "$");
+$("#goalTxt").textContent = `${fmt(p.raised)} of ${fmt(p.moneyGoal)}`; $("#goalBar").style.width = Math.min(100, p.raised / p.moneyGoal * 100) + "%";
+$("#dnLog").innerHTML = A.donations.length ? A.donations.map(d => `<div><span><b>${esc(d.donor)}</b><br><span class="note">${esc(d.gift)} · ${esc(d.date)}</span></span><span class="plus">${fmt(d.amt)}</span></div>`).join("") : `<span class="empty">No payments logged yet.</span>`;
+$("#invTable").innerHTML = `<tr><th>Item</th><th>On hand</th><th>Coming</th><th>Status</th><th>Check in</th></tr>` + p.items.map(it => { const h = Math.min(it.goal, it.have), st = h >= it.goal ? ["ok", "Full"] : h >= it.goal * .6 ? ["warn", "Close"] : ["low", "Need " + (it.goal - h)]; return `<tr><td>${esc(it.name)}</td><td><span class="mini"><i style="width:${h / it.goal * 100}%"></i></span>${it.have}</td><td>${it.pledged || "—"}</td><td><span class="pill ${st[0]}">${st[1]}</span></td><td><div class="row" style="gap:6px;flex-wrap:nowrap"><input type="number" min="1" value="${it.pledged || 10}" style="width:80px" data-ciq="${esc(it.name)}"><button class="btn sm ghost" data-ci="${esc(it.name)}">Add</button></div></td></tr>` }).join("");
+$$("[data-ci]").forEach(b => b.onclick = () => { const q = +document.querySelector(`[data-ciq="${CSS.escape(b.dataset.ci)}"]`).value; adminCall("checkInItem", b, b.dataset.ci, q).then(d => d && toast(`Checked in ${q} ${b.dataset.ci.toLowerCase()}`)) });
+$("#pledgeTable").innerHTML = `<tr><th>Date</th><th>Name</th><th>Item</th><th>Qty</th></tr>` + (A.pledges.map(x => `<tr><td>${esc(x.date)}</td><td>${esc(x.name)}</td><td>${esc(x.item)}</td><td>${x.qty}</td></tr>`).join("") || `<tr><td colspan="4" class="empty">No pledges yet.</td></tr>`);
+$("#roomTable").innerHTML = `<tr><th>Room</th><th>Raised</th><th>Sponsors</th><th>Door plaque</th><th>Status</th></tr>` + p.rooms.map(r => { const f = r.amt >= G; return `<tr><td>Room ${esc(r.no)}</td><td><span class="mini"><i style="width:${Math.min(100, r.amt / G * 100)}%"></i></span>${fmt(r.amt)}</td><td>${esc(r.by) || "—"}</td><td>${esc(r.plaque) || "—"}</td><td><span class="pill ${f ? "ok" : r.amt ? "warn" : "low"}">${f ? "Adopted" : r.amt ? "In progress" : "Open"}</span></td></tr>` }).join("");
+$("#adoptTable").innerHTML = `<tr><th>Date</th><th>Donor</th><th>Contact</th><th>Room</th><th>Amount</th><th>Plaque</th><th>Payment</th></tr>` + (A.adoptions.map(a => `<tr><td>${esc(a.date)}</td><td>${esc(a.name)}</td><td>${esc(a.email)}<br><span class="note">${esc(a.phone)}</span></td><td>${esc(a.room)}</td><td>${fmt(a.amt)}</td><td>${esc(a.plaque) || "—"}</td><td><button class="pill ${pill(a.status)}" data-adv="Adoptions" data-row="${a.row}" style="border:0;cursor:pointer">${esc(a.status)}</button></td></tr>`).join("") || `<tr><td colspan="7" class="empty">No submissions yet.</td></tr>`);
+$("#wishTable").innerHTML = `<tr><th>#</th><th>Resident</th><th>Needs &amp; sizes</th><th>Adopted by</th><th>Status</th></tr>` + ((A.angels || []).map(a => `<tr><td>${esc(a.no)}</td><td>${esc(a.who)}</td><td style="min-width:200px;white-space:pre-line">${esc(a.needs)}${a.sizes ? `<br><span class="note">Sizes: ${esc(a.sizes)}</span>` : ""}${a.wish ? `<br><span class="note">Wish: ${esc(a.wish)}</span>` : ""}</td><td>${a.by ? esc(a.by) + `<br><span class="note">${esc(a.email)}<br>${esc(a.phone)}</span>` : "—"}</td><td>${a.by ? `<button class="pill ${pill(a.status)}" data-adv="Angel Tree" data-row="${a.id}" style="border:0;cursor:pointer">${esc(a.status)}</button>` : `<span class="pill low">Open</span>`}<div class="row" style="gap:4px;margin-top:6px;flex-wrap:nowrap"><button class="btn sm ghost" data-aedit="${a.id}">Edit</button>${a.by ? `<button class="btn sm ghost" data-arel="${a.id}">Release</button>` : ""}<button class="btn sm ghost" data-arem="${a.id}">Remove</button></div></td></tr>`).join("") || `<tr><td colspan="5" class="empty">No angels yet. Add one to the right.</td></tr>`);
+$$("[data-arel]").forEach(b => b.onclick = () => adminCall("releaseAngel", b, +b.dataset.arel).then(d => d && toast("Angel is open again")));
+$$("[data-arem]").forEach(b => { b.onclick = () => { if (b.dataset.sure) { adminCall("removeAngel", b, +b.dataset.arem).then(d => d && toast("Angel removed")) } else { b.dataset.sure = "1"; b.textContent = "Tap again to remove" } } });
+$("[data-aedit]").forEach(b => b.onclick = () => { const a = (A.angels || []).find(x => x.id === +b.dataset.aedit); if (!a) return; window.wsEdit = a.id; $("#wsWho").value = a.who || ""; $("#wsNeeds").value = a.needs || ""; $("#wsSizes").value = a.sizes || ""; $("#wsWish").value = a.wish || ""; $("#wsTitle").textContent = "Edit Angel #" + a.no; $("#wsBtn").textContent = "Save changes"; $("#wsCancel").classList.remove("hidden"); $("#wsWho").scrollIntoView({ behavior: "smooth", block: "center" }); $("#wsWho").focus(); });
+$("#puTable").innerHTML = `<tr><th>Donor</th><th>When</th><th>Items</th><th>Status</th></tr>` + (A.pickups.map(x => `<tr><td>${esc(x.name)}<br><span class="note">${esc(x.phone)}<br>${esc(x.address)}</span></td><td>${esc(x.when)}</td><td>${esc(x.items)}</td><td><button class="pill ${pill(x.status)}" data-adv="Pickups" data-row="${x.row}" style="border:0;cursor:pointer">${esc(x.status)}</button></td></tr>`).join("") || `<tr><td colspan="4" class="empty">No pickup requests yet.</td></tr>`);
+$("#msgList").innerHTML = A.messages.length ? A.messages.map(m => `<div style="border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:6px"><div class="row" style="justify-content:space-between"><b>${esc(m.from)}</b><span class="note">To ${esc(m.to)}</span></div><span>${esc(m.msg)}</span>${m.status === "Approved" ? `<span class="pill ok">Approved to print</span>` : `<div class="row"><button class="btn sm" data-ms="Approved" data-row="${m.row}">Approve</button><button class="btn sm ghost" data-ms="Hidden" data-row="${m.row}">Hide</button></div>`}</div>`).join("") : `<span class="empty">No messages yet.</span>`;
+$$("[data-adv]").forEach(b => b.onclick = () => adminCall("advanceStatus", b, b.dataset.adv, +b.dataset.row));
+$$("[data-ms]").forEach(b => b.onclick = () => adminCall("setStatus", b, "Messages", +b.dataset.row, b.dataset.ms));
+hbars($("#ptsChart"), [...A.staff.residents].sort((a, b) => b.pts - a.pts).map(r => [r.name, r.pts]), "pts");
+$("#adPtLog").innerHTML = A.staff.today.length ? A.staff.today.map(l => `<div><span><b>${esc(l.who)}</b><br><span class="note">${esc(l.what)} · ${esc(l.staff)}</span></span><span class="${l.pts > 0 ? "plus" : "minus"}">${l.pts > 0 ? "+" : ""}${l.pts}</span></div>`).join("") : `<span class="empty">No points recorded today.</span>`;
+const aj = $("#ajRes"), cur = aj.value; aj.innerHTML = A.staff.residents.map(r => `<option>${esc(r.name)}</option>`).join(""); if (cur) aj.value = cur;
+}
+if (PAGE === "admin") {
+$("#adminGo").onclick = () => adminSignIn($("#adminPin").value.trim());
+$("#adminPin").onkeydown = e => { if (e.key === "Enter") $("#adminGo").click() };
+$("#adminRefresh").onclick = () => adminCall("getAdminData", $("#adminRefresh"));
+$$("[data-at]").forEach(b => b.onclick = () => { $$("[data-at]").forEach(x => x.setAttribute("aria-pressed", x === b)); $$("[data-ap]").forEach(p => p.classList.toggle("hidden", p.dataset.ap !== b.dataset.at)) });
+$("#dnBtn").onclick = () => adminCall("logDonation", $("#dnBtn"), { donor: $("#dnDonor").value, amount: $("#dnAmt").value, gift: $("#dnGift").value }).then(d => { if (d) { $("#dnDonor").value = ""; $("#dnAmt").value = ""; toast("Payment added") } });
+function wsReset() { window.wsEdit = null; ["wsWho", "wsNeeds", "wsSizes", "wsWish"].forEach(id => $("#" + id).value = ""); $("#wsTitle").textContent = "Add an angel"; $("#wsBtn").textContent = "Add angel"; $("#wsCancel").classList.add("hidden"); }
+$("#wsCancel").onclick = wsReset;
+$("#wsBtn").onclick = () => { const f = { who: $("#wsWho").value, needs: $("#wsNeeds").value, sizes: $("#wsSizes").value, wish: $("#wsWish").value }; const was = window.wsEdit; const p = was ? adminCall("updateAngel", $("#wsBtn"), was, f) : adminCall("addAngel", $("#wsBtn"), f); p.then(d => { if (d) { wsReset(); toast(was ? "Angel updated" : "Angel added") } }); };
+$("#rsBtn").onclick = () => adminCall("addResident", $("#rsBtn"), { name: $("#rsName").value, room: $("#rsRoom").value, start: $("#rsStart").value }).then(d => { if (d) { ["rsName", "rsRoom", "rsStart"].forEach(id => $("#" + id).value = ""); toast("Resident added") } });
+$("#ajBtn").onclick = () => adminCall("adjustPoints", $("#ajBtn"), { resident: $("#ajRes").value, points: $("#ajPts").value, reason: $("#ajWhy").value }).then(d => { if (d) { $("#ajPts").value = ""; $("#ajWhy").value = ""; toast("Points updated") } });
+const ap = ss.get("rosAdminPin"); if (ap) adminSignIn(ap);
+}
+(function () {
+const c = $("#snow"), x = c.getContext("2d"); if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; let w, h, f = [];
+function rs() { w = c.width = c.offsetWidth; h = c.height = c.offsetHeight; f = Array.from({ length: Math.round(w / 14) }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2 + .6, s: Math.random() * .5 + .2 })) }
+rs(); addEventListener("resize", rs);
+(function t() { if (c.offsetHeight !== h) rs(); x.clearRect(0, 0, w, h); x.fillStyle = "rgba(244,220,150,.9)"; f.forEach(p => { p.y += p.s; p.x += Math.sin(p.y / 30) * .3; if (p.y > h) { p.y = -4; p.x = Math.random() * w } x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fill() }); requestAnimationFrame(t) })();
+})();
+</script>
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!a) return;
+  var id = a.getAttribute('href').slice(1);
+  e.preventDefault();
+  e.stopPropagation();
+  if (!id) return;
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, true);
+</script>
+<script>
+(function(){
+var map={give:'gift',rooms:'gift',stockings:'items',message:'msg'};
+function show(g,scroll){
+Object.keys(map).forEach(function(id){var s=document.getElementById(id);if(s)s.classList.toggle('grpHide',map[id]!==g)});
+document.querySelectorAll('.path').forEach(function(b){b.classList.toggle('on',b.dataset.group===g)});
+if(scroll){var first=Object.keys(map).filter(function(id){return map[id]===g})[0];var el=document.getElementById(first);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+}
+document.addEventListener('click',function(e){
+var p=e.target.closest('.path');if(p){if(p.dataset.group==='angel'){var w=document.getElementById('wishes');if(w)w.scrollIntoView({behavior:'smooth',block:'start'});return}show(p.dataset.group,true);return}
+var a=e.target.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);if(map[id])show(map[id],false)}
+},true);
+show('gift',false);
+})();
+</script>
+</body>
+</html>
