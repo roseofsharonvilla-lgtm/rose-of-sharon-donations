@@ -942,11 +942,12 @@ const $r = s => document.querySelector(s);
 function rlWho() { return ($r("#rlWho").value || "").trim() }
 function rlLoad(scroll) {
   if (!RL.room) return;
-  run("getRoomList", RL.room, RL.code).then(d => { RL.data = d; rlRender(); if (scroll) setTimeout(() => $r("#roomlist").scrollIntoView({ behavior: "smooth", block: "start" }), 60) });
+  run("getRoomList", RL.room, RL.code).then(d => { RL.data = d; rlRender(); if (scroll) { let n = 0; const go = () => { const pb = $r("#pubBody"); if (pb && pb.classList.contains("hidden") && n++ < 40) return setTimeout(go, 250); $r("#roomlist").scrollIntoView({ behavior: "smooth", block: "start" }) }; setTimeout(go, 60) } });
 }
 function rlRender() {
   const d = RL.data, s = d.summary, sec = $r("#roomlist");
   sec.classList.remove("hidden");
+  const pb = $r("#pubBody"); if (pb && pb.firstElementChild !== sec) pb.prepend(sec);
   $r("#rlEyebrow").textContent = d.sponsor ? "Adopted by " + d.sponsor : "Adopt a Room";
   $r("#rlTitle").textContent = "Room " + d.room + " shopping list";
   $r("#rlSub").textContent = d.items.length ? (d.residents ? "Room " + d.room + " is home to " + d.residents + " residents, so this list has enough for each of them. " : "") + "Everything here is new and goes straight into Room " + d.room + "." : "We're still putting this room's list together. Sign up below and we'll email it to you.";
