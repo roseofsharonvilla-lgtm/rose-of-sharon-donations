@@ -275,6 +275,28 @@ td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;font-v
 @media(max-width:760px){#stockNeeds{padding:22px 18px}.snGrid{grid-template-columns:repeat(2,1fr)}}
 .snPromise{margin:12px 0 0;padding:12px 16px;border-radius:14px;background:#eef7f1;border:1px dashed #1f7a4a;color:#1d4a36;font-size:15px;line-height:1.55}
 .snPromise b{color:#1f7a4a}
+#roomlist{display:grid;gap:16px}
+#roomlist.hidden{display:none}
+.rlHead{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;align-items:end}
+.rlStats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rlStats .panel{display:grid;gap:8px}
+.rlWho{display:grid;gap:8px}
+.rlList{display:grid;gap:10px}
+.rlItem{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.rlItem.bought{background:color-mix(in srgb,var(--gold-soft) 55%,var(--surface))}
+.rlItem.delivered{background:color-mix(in srgb,var(--chip) 80%,var(--surface));opacity:.85}
+.rlCheck{width:30px;height:30px;border-radius:9px;border:2px solid var(--evergreen-2);display:grid;place-items:center;font-weight:800;color:#fff}
+.rlItem.bought .rlCheck{background:var(--gold);border-color:var(--gold)}
+.rlItem.delivered .rlCheck{background:var(--evergreen-2)}
+.rlName{font-weight:700;font-size:16px;line-height:1.3}
+.rlMeta{font-size:13px;color:var(--muted);margin-top:3px}
+.rlNote{font-size:13px;color:var(--berry);font-weight:600;margin-top:3px}
+.rlActs{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.rlElse{display:flex;gap:6px;align-items:center}
+.rlElse input{width:150px;padding:8px 10px}
+.rlShip{font-size:15px;line-height:1.55}
+.rlPayBtn{flex:1 1 90px;text-align:center}
+@media(max-width:720px){.rlHead{grid-template-columns:1fr}.rlItem{grid-template-columns:auto 1fr}.rlActs{grid-column:1/-1;justify-content:flex-start}.rlElse input{width:100%}}
 </style>
 </head>
 <body>
@@ -311,6 +333,27 @@ td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;font-v
 <main class="wrap" id="public" data-for="public">
 <div class="loading" id="pubLoading">Loading…</div>
 <div id="pubBody" class="hidden" style="display:grid;gap:44px">
+<section id="roomlist" class="hidden" style="scroll-margin-top:16px">
+<div class="rlHead">
+<div><div class="eyebrowDark" id="rlEyebrow">Adopt a Room</div><h2 id="rlTitle">Room shopping list</h2><p class="sub" id="rlSub"></p></div>
+<div class="rlStats"><div class="panel"><span class="label">Items bought</span><div class="big" id="rlBought">0</div><div class="bar" style="height:14px"><i id="rlBar"></i></div></div><div class="panel"><span class="label">Delivered</span><div class="big" id="rlDel">0</div><div class="bar" style="height:14px"><i id="rlDelBar"></i></div></div></div>
+</div>
+<div class="rlWho panel"><label class="field" style="margin:0"><span>Who's shopping? Your name or group</span><input id="rlWho" type="text" placeholder="Example: Sister Denise, House of God Church"></label><span class="note">Pick an item, buy it on Amazon or anywhere you like, then tap <b>Bought</b> so no one buys it twice.</span></div>
+<div class="rlList" id="rlList"></div>
+<div class="rlShip panel" id="rlShip"></div>
+<div class="grid two" style="align-items:start">
+<div class="panel"><h3>Help finish the room</h3><p class="note" style="font-size:15px">Paint, wall art, a lamp, decor and the thank-you plaque on the door bring the room together. Tap an amount and add the room number in the note.</p><div class="row" id="rlPay" style="gap:8px;margin-top:10px"></div></div>
+<div class="panel" id="rlSignup"><h3>Adopt this room</h3><div class="formBox">
+<label class="field"><span>Church, family or business</span><input id="suName" type="text" placeholder="Example: House of God Church"></label>
+<label class="field"><span>Contact person</span><input id="suContact" type="text"></label>
+<div class="row"><label class="field"><span>Email</span><input id="suEmail" type="email"></label><label class="field"><span>Phone</span><input id="suPhone" type="tel"></label></div>
+<label class="field"><span>Mailing address (for your thank-you letter)</span><input id="suAddr" type="text"></label>
+<button class="btn gold" id="suBtn">Sign up and email me our list</button>
+<div id="suDone"></div>
+</div></div>
+</div>
+</section>
+
 <section id="stockNeeds">
 <div class="snHead"><svg class="snSock" viewBox="0 0 48 60" aria-hidden="true"><path d="M14 8h20v26c0 2 1 3 3 4l4 3c5 4 4 13-3 15-3 1-6 0-8-2L18 44c-3-2-4-5-4-8z" fill="#c8102e"/><path d="M30 44l4 3" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/><rect x="11" y="2" width="26" height="11" rx="4" fill="#fff" stroke="#e7d9c0"/><circle cx="24" cy="7.5" r="2.2" fill="#2fbf71"/></svg><div><div class="eyebrowDark">Stocking stuffer drive</div><h2>Fill a stocking for every resident</h2></div></div>
 <p class="sub">Each stocking is a little care package with everyday things many of our residents don't have, like deodorant, toothpaste, socks and lotion. For a lot of them, it's the only gift they'll open on Christmas morning. Every stocking gets one of each item below. Here's what we still need:</p>
@@ -889,6 +932,64 @@ var p=e.target.closest('.path');if(p){if(p.dataset.group==='angel'){var w=docume
 var a=e.target.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);if(map[id])show(map[id],false)}
 },true);
 show('gift',false);
+})();
+</script>
+<script>
+(function () {
+const q = new URLSearchParams(location.search), RL = { room: Number(q.get("room")) || 0, code: q.get("s") || "", data: null, open: null };
+const $r = s => document.querySelector(s);
+function rlWho() { return ($r("#rlWho").value || "").trim() }
+function rlLoad(scroll) {
+  if (!RL.room) return;
+  run("getRoomList", RL.room, RL.code).then(d => { RL.data = d; rlRender(); if (scroll) setTimeout(() => $r("#roomlist").scrollIntoView({ behavior: "smooth", block: "start" }), 60) });
+}
+function rlRender() {
+  const d = RL.data, s = d.summary, sec = $r("#roomlist");
+  sec.classList.remove("hidden");
+  $r("#rlEyebrow").textContent = d.sponsor ? "Adopted by " + d.sponsor : "Adopt a Room";
+  $r("#rlTitle").textContent = "Room " + d.room + " shopping list";
+  $r("#rlSub").textContent = d.items.length ? (d.residents ? "Room " + d.room + " is home to " + d.residents + " residents, so this list has enough for each of them. " : "") + "Everything here is new and goes straight into Room " + d.room + "." : "We're still putting this room's list together. Sign up below and we'll email it to you.";
+  $r("#rlBought").innerHTML = `${s.bought} <small>of ${s.units}</small>`; $r("#rlBar").style.width = (s.units ? s.bought / s.units * 100 : 0) + "%";
+  $r("#rlDel").innerHTML = `${s.delivered} <small>of ${s.units}</small>`; $r("#rlDelBar").style.width = (s.units ? s.delivered / s.units * 100 : 0) + "%";
+  const who = rlWho(), saved = ss.get("rlWho");
+  if (!who) $r("#rlWho").value = saved || (d.isSponsor ? d.sponsor : "");
+  $r("#rlList").innerHTML = d.items.map(i => {
+    const st = i.status === "Delivered" ? "delivered" : i.status === "Bought" ? "bought" : "";
+    const meta = `Qty ${i.qty} · about ${fmt(i.price)} each`;
+    let acts;
+    if (st === "delivered") acts = `<span class="pill ok">Delivered</span>`;
+    else if (st === "bought") acts = `<span class="pill warn">Bought${i.store ? " · " + esc(i.store) : ""}</span>${i.by && i.by === rlWho() ? `<button class="btn sm ghost" data-rlundo="${i.id}">Undo</button>` : ""}`;
+    else if (RL.open === i.id) acts = `<span class="rlElse"><input id="rlStore" type="text" placeholder="Store name, like Walmart"><button class="btn sm gold" data-rlsave="${i.id}">Save</button><button class="btn sm ghost" data-rlcancel="1">Cancel</button></span>`;
+    else acts = `${i.link ? `<a class="btn sm ghost" href="${esc(i.link)}" target="_blank" rel="noopener">Shop</a>` : ""}<button class="btn sm gold" data-rlbuy="${i.id}">Bought on Amazon</button><button class="btn sm ghost" data-rlelse="${i.id}">Bought elsewhere</button>`;
+    return `<div class="rlItem ${st}"><span class="rlCheck">${st ? "✓" : ""}</span><div><div class="rlName">${esc(i.item)}</div><div class="rlMeta">${meta}${st ? ` · ${st === "delivered" ? "delivered" : "bought"} by ${esc(i.by || "a friend")}${i.date ? " on " + esc(i.date) : ""}` : ""}</div>${i.note && !st ? `<div class="rlNote">${esc(i.note)}</div>` : ""}</div><div class="rlActs">${acts}</div></div>`;
+  }).join("") || `<span class="empty">No items yet.</span>`;
+  $r("#rlShip").innerHTML = `<b>Ship or bring items to:</b> Rose of Sharon Senior Villa, Attn: Room ${d.room}${d.sponsor ? ", " + esc(d.sponsor) : ""}, ${esc(d.address)}. Drop-offs Monday to Friday, 9 to 5. Call ahead: ${esc(d.phone)}.<br><span class="note">Buying somewhere else? Similar items in sage green, warm gold and ivory are perfect.</span>`;
+  const L = d.links || {};
+  $r("#rlPay").innerHTML = [25, 50, 100].filter(a => L[a]).map(a => `<a class="btn gold rlPayBtn" href="${esc(L[a])}" target="_blank" rel="noopener">Give $${a}</a>`).join("") || `<span class="note">Call us at ${esc(d.phone)} to give toward the room.</span>`;
+  $r("#rlSignup").classList.toggle("hidden", !!d.isSponsor);
+  document.querySelectorAll("[data-rlbuy]").forEach(b => b.onclick = () => rlMark(+b.dataset.rlbuy, "Amazon", b));
+  document.querySelectorAll("[data-rlelse]").forEach(b => b.onclick = () => { RL.open = +b.dataset.rlelse; rlRender(); const i = $r("#rlStore"); if (i) i.focus() });
+  document.querySelectorAll("[data-rlcancel]").forEach(b => b.onclick = () => { RL.open = null; rlRender() });
+  document.querySelectorAll("[data-rlsave]").forEach(b => b.onclick = () => { const st = ($r("#rlStore").value || "").trim(); if (!st) { toast("Please type the store name", true); return } rlMark(+b.dataset.rlsave, st, b) });
+  document.querySelectorAll("[data-rlundo]").forEach(b => b.onclick = () => { busy(b, true, "…"); run("unmarkRoomItem", { room: RL.room, id: +b.dataset.rlundo, code: RL.code }).then(d => { RL.data = d; rlRender(); toast("Marked as still needed") }).catch(() => busy(b, false)) });
+}
+function rlMark(id, store, btn) {
+  const who = rlWho();
+  if (!who) { toast("Please add your name at the top first", true); $r("#rlWho").focus(); return }
+  ss.set("rlWho", who);
+  busy(btn, true, "Saving…");
+  run("markRoomItem", { room: RL.room, id: id, who: who, store: store, code: RL.code }).then(d => { RL.open = null; RL.data = d; rlRender(); toast("Thank you! We'll watch for it.") }).catch(() => { busy(btn, false); rlLoad(false) });
+}
+$r("#rlWho").addEventListener("change", () => { ss.set("rlWho", rlWho()); if (RL.data) rlRender() });
+$r("#suBtn").onclick = () => {
+  const b = $r("#suBtn");
+  const f = { room: RL.room, name: $r("#suName").value, contact: $r("#suContact").value, email: $r("#suEmail").value, phone: $r("#suPhone").value, address: $r("#suAddr").value };
+  busy(b, true, "Signing you up…");
+  run("signUpRoom", f).then(r => { busy(b, false); $r("#suDone").innerHTML = `<div class="confirm" style="margin-top:10px"><b>Thank you!</b> We just emailed your room link to ${esc(f.email)}. Keep it handy for everyone who's shopping.</div>`; RL.code = r.code; history.replaceState(null, "", "?room=" + RL.room + "&s=" + encodeURIComponent(r.code)); rlLoad(false) }).catch(() => busy(b, false));
+};
+const ri = $r("#roomItems");
+if (ri) { const upd = () => { const v = Number(($r("#adRoom") || {}).value) || 0; if (v) { ri.removeAttribute("target"); ri.href = "?room=" + v; ri.onclick = e => { e.preventDefault(); RL.room = v; RL.code = ""; history.replaceState(null, "", "?room=" + v); rlLoad(true) } } else ri.onclick = null }; document.addEventListener("change", e => { if (e.target && e.target.id === "adRoom") upd() }); setInterval(upd, 1500) }
+if (RL.room) rlLoad(true);
 })();
 </script>
 </body>
